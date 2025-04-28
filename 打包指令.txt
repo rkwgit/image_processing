@@ -1,0 +1,32 @@
+打包指令1：
+pyinstaller --onefile --windowed --add-binary "vcruntime140.dll;." --add-binary "msvcp140.dll;." --add-binary "vcruntime140_1.dll;." --add-binary "concrt140.dll;." D:\test\image_processor.py
+
+
+
+
+
+
+打包指令2：
+pyinstaller --onefile --windowed ^
+    --name "ImageProcessor" ^
+    --add-binary "vcruntime140.dll;." ^
+    --add-binary "msvcp140.dll;." ^
+    --add-binary "vcruntime140_1.dll;." ^
+    --add-binary "concrt140.dll;." ^
+    --hidden-import cv2 ^
+    --hidden-import numpy ^
+    --hidden-import PyQt5.QtWidgets ^
+    --hidden-import PyQt5.QtGui ^
+    --hidden-import PyQt5.QtCore ^
+    main.py
+
+#命令行打包时有空格换行无法粘贴运行，修改如下
+    pyinstaller --onefile --windowed --name "ImageProcessor" --add-binary "vcruntime140.dll;." --add-binary "msvcp140.dll;." --add-binary "vcruntime140_1.dll;." --add-binary "concrt140.dll;." --hidden-import cv2 --hidden-import numpy --hidden-import PyQt5.QtWidgets --hidden-import PyQt5.QtGui --hidden-import PyQt5.QtCore main.py
+
+
+
+打包指令3：
+    要增加exe文件的图标的话，就在打包时再加上，  --icon=app_icon.ico
+    app_icon.ico与vcruntime140.dll这些文件与要打包的py脚本位于同一个文件目录下
+    在文件录下打开cmd执行该打包指令即可,指令如下
+    pyinstaller --onefile --windowed --icon=app_icon.ico --name "ImageProcessor" --add-binary "vcruntime140.dll;." --add-binary "msvcp140.dll;." --add-binary "vcruntime140_1.dll;." --add-binary "concrt140.dll;." --hidden-import cv2 --hidden-import numpy --hidden-import PyQt5.QtWidgets --hidden-import PyQt5.QtGui --hidden-import PyQt5.QtCore main.py
